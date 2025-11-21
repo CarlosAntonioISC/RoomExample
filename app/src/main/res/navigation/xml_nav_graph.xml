@@ -2,19 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/xml_nav_graph"
-    app:startDestination="@id/xmlScreenA">
+    app:startDestination="@id/contactList">
 
     <fragment
-        android:id="@+id/xmlScreenA"
-        android:name="com.example.roomexample.xml.XmlScreenAFragment"
-        android:label="Pantalla A">
+        android:id="@+id/contactList"
+        android:name="com.example.roomexample.xml.ContactListFragment"
+        android:label="Lista de contactos">
         <action
-            android:id="@+id/action_xmlScreenA_to_xmlScreenB"
-            app:destination="@id/xmlScreenB" />
+            android:id="@+id/action_contactList_to_contactDetail"
+            app:destination="@id/contactDetail" />
     </fragment>
 
     <fragment
-        android:id="@+id/xmlScreenB"
-        android:name="com.example.roomexample.xml.XmlScreenBFragment"
-        android:label="Pantalla B" />
+        android:id="@+id/contactDetail"
+        android:name="com.example.roomexample.xml.ContactDetailFragment"
+        android:label="Detalle de contacto" />
 </navigation>
