@@ -3,6 +3,10 @@ package com.example.roomexample.ui.xml
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +25,44 @@ class ContactListFragment : Fragment(R.layout.fragment_contact_list) {
 
         binding?.toolbar?.setNavigationOnClickListener {
             requireActivity().finish()
+        }
+
+        val initialToolbarPaddingTop = binding?.toolbar?.paddingTop ?: 0
+        val initialListPadding = binding?.contactList?.let { recyclerView ->
+            PaddingValues(
+                left = recyclerView.paddingLeft,
+                top = recyclerView.paddingTop,
+                right = recyclerView.paddingRight,
+                bottom = recyclerView.paddingBottom,
+            )
+        }
+        val initialFabBottomMargin = binding?.fabAddContact?.let { fab ->
+            (fab.layoutParams as? ViewGroup.MarginLayoutParams)?.bottomMargin ?: 0
+        } ?: 0
+
+        binding?.root?.let { root ->
+            ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+                binding?.toolbar?.updatePadding(top = initialToolbarPaddingTop + systemBars.top)
+
+                binding?.contactList?.let { recyclerView ->
+                    initialListPadding?.let { padding ->
+                        recyclerView.updatePadding(
+                            left = padding.left + systemBars.left,
+                            top = padding.top,
+                            right = padding.right + systemBars.right,
+                            bottom = padding.bottom + systemBars.bottom,
+                        )
+                    }
+                }
+
+                binding?.fabAddContact?.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                    bottomMargin = initialFabBottomMargin + systemBars.bottom
+                }
+
+                insets
+            }
         }
 
         binding?.fabAddContact?.setOnClickListener {
@@ -53,3 +95,10 @@ class ContactListFragment : Fragment(R.layout.fragment_contact_list) {
         override fun getItemCount(): Int = 0
     }
 }
+
+private data class PaddingValues(
+    val left: Int,
+    val top: Int,
+    val right: Int,
+    val bottom: Int,
+)
