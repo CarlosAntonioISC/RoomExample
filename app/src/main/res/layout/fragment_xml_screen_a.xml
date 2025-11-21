@@ -10,8 +10,7 @@
         android:id="@+id/text_screen_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pantalla A (XML)"
-        android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+        android:text="Pantalla A (XML)" />
 
     <Button
         android:id="@+id/button_go_to_b"
