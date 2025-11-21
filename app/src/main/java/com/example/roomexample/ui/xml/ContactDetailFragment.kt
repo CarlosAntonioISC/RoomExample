@@ -12,27 +12,26 @@ import com.example.roomexample.databinding.FragmentContactDetailBinding
 
 class ContactDetailFragment : Fragment(R.layout.fragment_contact_detail) {
     private var _binding: FragmentContactDetailBinding? = null
-    private val binding get() = _binding
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentContactDetailBinding.bind(view)
 
-        binding?.toolbar?.setNavigationOnClickListener {
+        binding.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
-        val initialToolbarPaddingTop = binding?.toolbar?.paddingTop ?: 0
-
-        binding?.root?.let { root ->
-            ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-
-                binding?.toolbar?.updatePadding(top = initialToolbarPaddingTop + systemBars.top)
-
-                insets
-            }
+            binding.root.updatePadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                systemBars.bottom
+            )
+            insets
         }
     }
 
