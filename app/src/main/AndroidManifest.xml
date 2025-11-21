@@ -12,11 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoomExample">
         <activity
-            android:name=".ComposeNavActivity"
+            android:name=".ui.compose.ComposeNavActivity"
             android:exported="false"
             android:label="@string/title_compose_activity" />
         <activity
-            android:name=".XmlNavigationActivity"
+            android:name=".xml.XmlNavigationActivity"
             android:exported="false"
             android:label="@string/title_xml_activity" />
         <activity
