@@ -5,4 +5,5 @@
     <string name="title_contact_list">Lista de Contactos</string>
     <string name="title_contact_detail">Detalle de contacto</string>
     <string name="desc_add_contact">Agregar contacto</string>
+    <string name="back">Regresar</string>
 </resources>

@@ -12,7 +12,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.roomexample.R
 import com.example.roomexample.ui.compose.theme.RoomExampleTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -24,12 +26,12 @@ fun ContactListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Lista de Contactos") },
+                title = { Text(stringResource(R.string.title_contact_list)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Regresar"
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 }
@@ -38,7 +40,7 @@ fun ContactListScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onAddContact,
-                content = { Icon(Icons.Filled.Add, "Agregar contacto") }
+                content = { Icon(Icons.Filled.Add, stringResource(R.string.desc_add_contact)) }
             )
         }
     ) { padding ->
