@@ -9,12 +9,18 @@
         android:name="com.example.roomexample.ui.xml.ContactListFragment"
         android:label="Lista de contactos">
         <action
-            android:id="@+id/action_contactList_to_contactDetail"
-            app:destination="@id/contactDetail" />
+            android:id="@+id/action_contactList_to_addContactSheet"
+            app:destination="@id/addContactBottomSheet" />
     </fragment>
 
     <fragment
         android:id="@+id/contactDetail"
         android:name="com.example.roomexample.ui.xml.ContactDetailFragment"
         android:label="Detalle de contacto" />
+
+    <dialog
+        android:id="@+id/addContactBottomSheet"
+        android:name="com.example.roomexample.ui.xml.AddContactBottomSheetFragment"
+        android:label="@string/title_add_contact"
+        app:layout="@layout/bottom_sheet_add_contact" />
 </navigation>

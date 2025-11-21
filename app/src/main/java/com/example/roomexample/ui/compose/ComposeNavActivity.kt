@@ -30,12 +30,18 @@ class ComposeNavActivity : ComponentActivity() {
         NavHost(navController = navController, startDestination = "contact_list") {
             composable("contact_list") {
                 ContactListScreen(
-                    onAddContact = { navController.navigate("contact_detail") },
+                    onAddContact = { navController.navigate("add_contact_bottom_sheet") },
                     onBack = { finish() }
                 )
             }
             composable("contact_detail") {
                 ContactDetailScreen(onBack = { navController.popBackStack() })
+            }
+            composable("add_contact_bottom_sheet") {
+                AddContactBottomSheet(
+                    onConfirm = { _, _ -> navController.popBackStack() },
+                    onDismiss = { navController.popBackStack() }
+                )
             }
         }
     }
