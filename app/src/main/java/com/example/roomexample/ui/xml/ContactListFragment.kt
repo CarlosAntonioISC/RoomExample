@@ -38,7 +38,7 @@ class ContactListFragment : Fragment(R.layout.fragment_contact_list) {
         }
 
         binding.fabAddContact.setOnClickListener {
-            findNavController().navigate(R.id.action_contactList_to_contactDetail)
+            findNavController().navigate(R.id.action_contactList_to_addContactSheet)
         }
 
         binding.contactList.layoutManager =

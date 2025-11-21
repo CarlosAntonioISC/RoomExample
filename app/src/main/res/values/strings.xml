@@ -4,6 +4,11 @@
     <string name="title_xml_activity">Navegación XML</string>
     <string name="title_contact_list">Lista de Contactos</string>
     <string name="title_contact_detail">Detalle de contacto</string>
+    <string name="title_add_contact">Nuevo contacto</string>
     <string name="desc_add_contact">Agregar contacto</string>
     <string name="back">Regresar</string>
+    <string name="hint_contact_name">Nombre del contacto</string>
+    <string name="hint_contact_phone">Teléfono del contacto</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_confirm">Confirmar</string>
 </resources>
