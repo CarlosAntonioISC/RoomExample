@@ -1,16 +1,25 @@
 package com.example.roomexample
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.roomexample.ui.theme.RoomExampleTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,10 +28,14 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RoomExampleTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    LandingScreen(
+                        onOpenCompose = {
+                            startActivity(Intent(this, ComposeNavActivity::class.java))
+                        },
+                        onOpenXml = {
+                            startActivity(Intent(this, XmlNavigationActivity::class.java))
+                        }
                     )
                 }
             }
@@ -31,17 +44,37 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
+fun LandingScreen(
+    onOpenCompose: () -> Unit,
+    onOpenXml: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
         modifier = modifier
-    )
+            .fillMaxSize()
+            .padding(24.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Room Example",
+            style = MaterialTheme.typography.headlineMedium
+        )
+        Spacer(modifier = Modifier.height(24.dp))
+        Button(onClick = onOpenCompose) {
+            Text(text = "Abrir Compose")
+        }
+        Spacer(modifier = Modifier.height(12.dp))
+        Button(onClick = onOpenXml) {
+            Text(text = "Abrir XML")
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+private fun LandingScreenPreview() {
     RoomExampleTheme {
-        Greeting("Android")
+        LandingScreen(onOpenCompose = {}, onOpenXml = {})
     }
 }
