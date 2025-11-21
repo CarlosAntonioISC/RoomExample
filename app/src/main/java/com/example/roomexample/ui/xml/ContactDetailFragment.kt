@@ -1,4 +1,4 @@
-package com.example.roomexample.xml
+package com.example.roomexample.ui.xml
 
 import android.os.Bundle
 import android.view.View

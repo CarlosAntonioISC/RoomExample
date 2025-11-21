@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.roomexample.ui.theme.RoomExampleTheme
+import com.example.roomexample.ui.compose.theme.RoomExampleTheme
 
 class ComposeNavActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

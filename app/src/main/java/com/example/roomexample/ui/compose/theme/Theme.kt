@@ -1,8 +1,6 @@
-package com.example.roomexample.ui.theme
+package com.example.roomexample.ui.compose.theme
 
-import android.app.Activity
 import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/contactList"
-        android:name="com.example.roomexample.xml.ContactListFragment"
+        android:name="com.example.roomexample.ui.xml.ContactListFragment"
         android:label="Lista de contactos">
         <action
             android:id="@+id/action_contactList_to_contactDetail"
@@ -15,6 +15,6 @@
 
     <fragment
         android:id="@+id/contactDetail"
-        android:name="com.example.roomexample.xml.ContactDetailFragment"
+        android:name="com.example.roomexample.ui.xml.ContactDetailFragment"
         android:label="Detalle de contacto" />
 </navigation>

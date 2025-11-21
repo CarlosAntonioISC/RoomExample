@@ -1,7 +1,8 @@
-package com.example.roomexample.xml
+package com.example.roomexample.ui.xml
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,7 +40,7 @@ class ContactListFragment : Fragment(R.layout.fragment_contact_list) {
     }
 
     private class EmptyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-        override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             val view = View(parent.context)
             view.layoutParams = RecyclerView.LayoutParams(0, 0)
             return object : RecyclerView.ViewHolder(view) {}
