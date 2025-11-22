@@ -25,5 +25,5 @@ interface ContactDao {
     fun getAllContacts(): Flow<List<ContactEntity>>
 
     @Query("SELECT * FROM ContactEntity WHERE id = :id")
-    fun getContactById(id: Int): Flow<ContactEntity>
+    fun getContactById(id: Int): Flow<ContactEntity?>
 }

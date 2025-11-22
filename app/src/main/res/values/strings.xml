@@ -7,6 +7,9 @@
     <string name="title_add_contact">Nuevo contacto</string>
     <string name="desc_add_contact">Agregar contacto</string>
     <string name="back">Regresar</string>
+    <string name="action_edit_contact">Editar contacto</string>
+    <string name="action_delete_contact">Eliminar contacto</string>
+    <string name="message_contact_not_found">No se encontró el contacto.</string>
     <string name="hint_contact_name">Nombre del contacto</string>
     <string name="hint_contact_phone">Teléfono del contacto</string>
     <string name="action_cancel">Cancelar</string>

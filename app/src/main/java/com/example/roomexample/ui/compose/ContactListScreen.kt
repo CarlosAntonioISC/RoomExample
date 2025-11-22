@@ -29,7 +29,8 @@ import com.example.roomexample.ui.compose.theme.RoomExampleTheme
 fun ContactListScreen(
     contacts: List<Contact>,
     onAddContact: () -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onContactClick: (Contact) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -58,7 +59,7 @@ fun ContactListScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(contacts) {
-                ContactItem(contact = it)
+                ContactItem(contact = it, onClick = { onContactClick(it) })
             }
         }
     }
@@ -75,7 +76,8 @@ fun ContactListScreenPreview() {
                 Contact(2, "Jane Smith", "098-765-4321")
             ),
             onAddContact = {},
-            onBack = {}
+            onBack = {},
+            onContactClick = {}
         )
     }
 }
