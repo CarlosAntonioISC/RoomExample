@@ -29,10 +29,12 @@ import com.example.roomexample.R
 @Composable
 fun AddContactBottomSheet(
     onConfirm: (String, String) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    initialName: String = "",
+    initialPhone: String = ""
 ) {
-    var name by rememberSaveable { mutableStateOf("") }
-    var phone by rememberSaveable { mutableStateOf("") }
+    var name by rememberSaveable { mutableStateOf(initialName) }
+    var phone by rememberSaveable { mutableStateOf(initialPhone) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     ModalBottomSheet(

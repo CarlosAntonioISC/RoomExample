@@ -16,8 +16,8 @@ class ContactRepository(
         }
     }
 
-    fun getContactById(id: Int): Flow<Contact> {
-        return contactDao.getContactById(id).map { it.toDomain() }
+    fun getContactById(id: Int): Flow<Contact?> {
+        return contactDao.getContactById(id).map { it?.toDomain() }
     }
 
     suspend fun insertContact(contact: Contact) {

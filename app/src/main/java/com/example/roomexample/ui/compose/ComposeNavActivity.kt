@@ -14,12 +14,17 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.roomexample.data.AppDatabase
 import com.example.roomexample.data.ContactRepository
 import com.example.roomexample.domain.Contact
+import com.example.roomexample.ui.ContactDetailViewModel
+import com.example.roomexample.ui.ContactDetailViewModelFactory
 import com.example.roomexample.ui.ContactViewModel
 import com.example.roomexample.ui.ContactViewModelFactory
 import com.example.roomexample.ui.compose.theme.RoomExampleTheme
@@ -50,11 +55,23 @@ class ComposeNavActivity : ComponentActivity() {
                     ContactListScreen(
                         contacts = contacts,
                         onAddContact = { showAddContactSheet = true },
-                        onBack = { finish() }
+                        onBack = { finish() },
+                        onContactClick = { navController.navigate("contact_detail/${it.id}") }
                     )
                 }
-                composable("contact_detail") {
-                    ContactDetailScreen(onBack = { navController.popBackStack() })
+                composable(
+                    route = "contact_detail/{contactId}",
+                    arguments = listOf(navArgument("contactId") { type = NavType.IntType })
+                ) { backStackEntry ->
+                    val contactId = backStackEntry.arguments?.getInt("contactId") ?: 0
+                    val detailViewModel: ContactDetailViewModel = viewModel(
+                        factory = ContactDetailViewModelFactory(repository, contactId)
+                    )
+                    ContactDetailScreen(
+                        viewModel = detailViewModel,
+                        onBack = { navController.popBackStack() },
+                        onDeleted = { navController.popBackStack() }
+                    )
                 }
             }
 
