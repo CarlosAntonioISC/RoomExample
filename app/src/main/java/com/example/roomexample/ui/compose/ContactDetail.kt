@@ -87,8 +87,8 @@ fun ContactDetailScreen(
 
     if (showEditSheet && contact != null) {
         AddContactBottomSheet(
-            initialName = contact.name,
-            initialPhone = contact.phone,
+            initialName = contact!!.name,
+            initialPhone = contact!!.phone,
             onConfirm = { name, phone ->
                 viewModel.updateContact(name, phone)
                 showEditSheet = false
