@@ -7,14 +7,21 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.roomexample.data.AppDatabase
+import com.example.roomexample.data.ContactRepository
+import com.example.roomexample.domain.Contact
+import com.example.roomexample.ui.ContactViewModel
+import com.example.roomexample.ui.ContactViewModelFactory
 import com.example.roomexample.ui.compose.theme.RoomExampleTheme
 
 class ComposeNavActivity : ComponentActivity() {
@@ -33,11 +40,15 @@ class ComposeNavActivity : ComponentActivity() {
     fun ComposeNavigation() {
         val navController = rememberNavController()
         var showAddContactSheet by rememberSaveable { mutableStateOf(false) }
+        val repository = ContactRepository(AppDatabase.getDatabase(applicationContext).contactDao())
+        val viewModel = ViewModelProvider(this, ContactViewModelFactory(repository))[ContactViewModel::class.java]
 
         Box(modifier = Modifier.fillMaxSize()) {
             NavHost(navController = navController, startDestination = "contact_list") {
                 composable("contact_list") {
+                    val contacts by viewModel.contacts.collectAsState()
                     ContactListScreen(
+                        contacts = contacts,
                         onAddContact = { showAddContactSheet = true },
                         onBack = { finish() }
                     )
@@ -49,7 +60,10 @@ class ComposeNavActivity : ComponentActivity() {
 
             if (showAddContactSheet) {
                 AddContactBottomSheet(
-                    onConfirm = { _, _ -> showAddContactSheet = false },
+                    onConfirm = { name, phone ->
+                        viewModel.addContact(Contact(id = 0, name = name, phone = phone))
+                        showAddContactSheet = false
+                    },
                     onDismiss = { showAddContactSheet = false }
                 )
             }
